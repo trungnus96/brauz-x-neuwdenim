@@ -56,7 +56,7 @@ const PACKAGE_URL =
  * READ ME
  * TC_shBq is Brauz test GROUP_NUMBER
  * You can find your GROUP_NUMBER at
- * https://brauz.com/command/reserve-in-store/setup
+ * https://brauz.com/command/reserve-in-store/setup > Get Script
  ************************************/
 const GROUP_NUMBER = "TC_shBq";
 

@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 
 // utilities
 import { loadScript } from "../src/utils";
-
-const StyledIndexPage = styled.div``;
 
 const PRODUCT = {
   product_id: 25885,
@@ -66,7 +63,7 @@ function HomePage() {
   const [is_error, setIsError] = useState(false);
 
   useEffect(() => {
-    // Import Brauz SDK to PDP (you can load it asynchronously)
+    // Import Brauz SDK to PDP
     loadScript(PACKAGE_URL, () => {
       window.Brauz.initializeBrauzReserveInStore(GROUP_NUMBER, {}, () => {
         // Pass product data to Brauz's Reserve In-Store config
@@ -121,7 +118,7 @@ function HomePage() {
   };
 
   return (
-    <StyledIndexPage>
+    <div>
       <div className="disclaimer">Demonstration purpose only</div>
       <header>
         <img
@@ -176,7 +173,7 @@ function HomePage() {
           </div>
         </div>
       </div>
-    </StyledIndexPage>
+    </div>
   );
 }
 

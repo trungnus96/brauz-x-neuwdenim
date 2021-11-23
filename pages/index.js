@@ -4,39 +4,31 @@ import React, { useState, useEffect } from "react";
 import { loadScript } from "../src/utils";
 
 const PRODUCT = {
-  product_id: 25885,
   image_url:
-    "https://www.neuwdenim.com/_next/image?url=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0361%2F2645%2F7989%2Fproducts%2F38637-5627-zero-jemima_lola-mom-jemima_1.jpg%3Fv%3D1625539221&w=1440&q=75",
-  name: "Lola Mom Zero Jemima",
-  price: 169.95,
+    "https://www.neuwdenim.com/_next/image?url=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0361%2F2645%2F7989%2Fproducts%2F34375-5571-black-art_teodoruk-art-shirt-2-black-art_1.jpg%3Fv%3D1635920530&w=1440&q=75",
+  product_name: "Teodoruk Art Shirt 2 - Black Art",
+  brand_name: "Neuw",
+  product_price: 99.95,
   sizes: [
     {
-      code: "38637-5627-ZERO JEMIMA-24/28",
-      barcode: "9356249012986",
-      value: "24/28",
+      code: "34375-5571-BLACK ART-S",
+      value: "S",
     },
     {
-      code: "38637-5627-ZERO JEMIMA-24/30",
-      barcode: "9356249221210",
-      value: "24/30",
+      code: "34375-5571-BLACK ART-M",
+      value: "M",
     },
     {
-      code: "38637-5627-ZERO JEMIMA-25/28",
-      barcode: "9356249012993",
-      value: "25/28",
+      code: "34375-5571-BLACK ART-L",
+      value: "L",
     },
     {
-      code: "38637-5627-ZERO JEMIMA-25/30",
-      barcode: "9356249221227",
-      value: "25/30",
-    },
-    {
-      code: "38637-5627-ZERO JEMIMA-26/28",
-      barcode: "9356249013006",
-      value: "26/28",
+      code: "34375-5571-BLACK ART-XL",
+      value: "XL",
     },
   ],
-  product_url: "https://www.neuwdenim.com/au/products/lola-mom-zero-jemima",
+  product_url:
+    "https://www.neuwdenim.com/au/products/teodoruk-art-shirt-2-black-art",
 };
 
 /***********************************
@@ -70,8 +62,10 @@ function HomePage() {
         window.Brauz_config = {
           reserve_in_store: {
             product: {
-              product_id: PRODUCT.product_id,
+              product_name: PRODUCT.product_name,
+              brand_name: PRODUCT.brand_name,
               image_url: PRODUCT.image_url,
+              product_price: PRODUCT.product_price,
               product_url: PRODUCT.product_url,
               // or
               // product_url: window.location.href
@@ -97,13 +91,16 @@ function HomePage() {
       window.Brauz_handle_attribute_change &&
       typeof window.Brauz_handle_attribute_change === "function"
     ) {
-      // you can use either code or barcode (barcode is preferred)
-      window.Brauz_handle_attribute_change({ product_sku: size.barcode });
+      // you can use either code
+      window.Brauz_handle_attribute_change({
+        product_sku: size.code,
+        size: size.value,
+      });
     }
   };
 
   const onFindStores = () => {
-    const is_size_selected = selected_size.barcode;
+    const is_size_selected = selected_size.code;
 
     if (!is_size_selected) {
       return setIsError(true);
@@ -129,12 +126,12 @@ function HomePage() {
 
       <div className="main">
         <div className="image-container">
-          <img src={PRODUCT.image_url} alt={PRODUCT.name} />
+          <img src={PRODUCT.image_url} alt={PRODUCT.product_name} />
         </div>
 
         <div className="product-info-container">
-          <div className="name">{PRODUCT.name}</div>
-          <div className="price">A$ {PRODUCT.price}</div>
+          <div className="name">{PRODUCT.product_name}</div>
+          <div className="price">A$ {PRODUCT.product_price}</div>
           <div className="container">
             <div>
               <strong>Size</strong>
@@ -142,7 +139,7 @@ function HomePage() {
             </div>
             <div className="sizes-container">
               {PRODUCT.sizes.map((size, index) => {
-                const is_selected = size.barcode === selected_size.barcode;
+                const is_selected = size.code === selected_size.code;
                 return (
                   <button
                     className={`size-container ${

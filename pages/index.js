@@ -132,7 +132,7 @@ function HomePage() {
         <div className="product-info-container">
           <div className="name">{PRODUCT.product_name}</div>
           <div className="price">A$ {PRODUCT.product_price}</div>
-          <div className="container">
+          <div className="container padding">
             <div>
               <strong>Size</strong>
               {is_error && <span className="error-message">Select a size</span>}
@@ -155,7 +155,7 @@ function HomePage() {
             </div>
           </div>
 
-          <div className="container buttons-container">
+          <div className="container padding buttons-container">
             <button>Add to cart</button>
 
             {/* Build your own Reserve In-Store button (HTML/CSS) */}

@@ -125,8 +125,11 @@ const GlobalStyle = createGlobalStyle`
       }
 
       .container {
-        padding: 24px;
         border: 1px solid rgb(237, 238, 241);
+
+        &.padding {
+          padding: 24px;
+        }
 
         &:not(:last-child) {
           border-bottom: none;
